@@ -2,19 +2,18 @@ const posts = JSON.parse(localStorage.getItem('posts')) || []
 
 const renderPosts = () => {
   document.getElementById('posts').innerHTML = ''
-
-  for (let i = 0; i < posts.length; i++) {
+  posts.forEach((post, i) => {
     const postElem = document.createElement('div')
     postElem.className = 'card mb-2'
     postElem.innerHTML = `
     <div class="card-body">
-      <h5 class="card-title">${posts[i].title}</h5>
-      <p class="card-text">${posts[i].body}</p>
+      <h5 class="card-title">${post.title}</h5>
+      <p class="card-text">${post.body}</p>
       <button class="btn btn-danger delete" data-index="${i}">delete</button>
     </div>
   `
     document.getElementById('posts').prepend(postElem)
-  }
+  })
 }
 
 document.getElementById('createPost').addEventListener('click', event => {
